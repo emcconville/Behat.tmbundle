@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env bash
+
+. "${TM_BUNDLE_SUPPORT}/etc/functions.sh"
+
+BEHAT_ARG="-f pretty --dry-run --no-snippets --no-time --no-ansi --no-paths"
+
+${TM_BEHAT} ${BEHAT_ARG} "${TM_FILEPATH}" | sed 'N;$!P;$!D;$d'
+
+exit 0;
+</string>
+	<key>input</key>
+	<string>none</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>keyEquivalent</key>
+	<string>^H</string>
+	<key>name</key>
+	<string>Tidy</string>
+	<key>outputCaret</key>
+	<string>heuristic</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>replaceDocument</string>
+	<key>scope</key>
+	<string>source.feature</string>
+	<key>uuid</key>
+	<string>CEC6FDA7-5C1D-4DE1-A6EE-E6A60B3AF2A5</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>

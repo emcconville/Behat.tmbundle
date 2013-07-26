@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileTypes</key>
+	<array>
+		<string>feature</string>
+	</array>
+	<key>name</key>
+	<string>Behat Feature</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.type.feature</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>meta.function.name.feature</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>^\s*((Feature|Scenario( Outline|s)?|Examples?|Background)\b\s*:\s*)(.*)$</string>
+			<key>name</key>
+			<string>entity.name.function.feature</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>@[^\s]+</string>
+			<key>name</key>
+			<string>entity.name.type.feature</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>^\s*(Given|And|When|Then|But)\b</string>
+			<key>name</key>
+			<string>keyword.control.feature</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>#(.*)$</string>
+			<key>name</key>
+			<string>comment.line.feature</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\&lt;\w+\&gt;</string>
+			<key>name</key>
+			<string>constant.character.escape.feature</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^\s*\|</string>
+			<key>end</key>
+			<string>\|$</string>
+			<key>name</key>
+			<string>string.other.feature</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>"</string>
+			<key>end</key>
+			<string>"</string>
+			<key>name</key>
+			<string>string.interpolated.feature</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\&lt;\w+\&gt;</string>
+					<key>name</key>
+					<string>constant.character.escape.feature</string>
+				</dict>
+			</array>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>source.feature</string>
+	<key>uuid</key>
+	<string>7F9612EE-6D7A-4A6F-BDE8-A62060D8D26C</string>
+</dict>
+</plist>

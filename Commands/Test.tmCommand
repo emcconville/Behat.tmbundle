@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>saveActiveFile</string>
+	<key>command</key>
+	<string>#!/usr/bin/env bash
+
+. "${TM_BUNDLE_SUPPORT}/etc/functions.sh"
+
+if test -n "${TM_LINE_NUMBER}"
+then
+  LINE_NUMBER=${TM_LINE_NUMBER}
+elif test -n "${TM_SELECTION}"
+then
+  LINE_NUMBER=$(sed -e 's/\([[:digit:]]*\).*/\1/' &lt;&lt;&lt; ${TM_SELECTION})
+fi
+
+# 
+# Find closest matching Scenario
+#
+while true
+do
+  if is_not_valid $LINE_NUMBER
+  then
+    body='No scenarios\nNo steps'
+    re=$(die_with_alert "Unable to locate Scenario to execute")
+    exit 0
+  fi
+  get_line_at $LINE_NUMBER
+  is_scenario
+  case $? in
+     1) decr 
+        ;;
+    -1) incr
+        ;;
+     0) break
+        ;;
+  esac
+done
+
+${TM_BEHAT} ${BEHAT_ARG} "${TM_FILEPATH}:${LINE_NUMBER}" 
+
+exit 0</string>
+	<key>input</key>
+	<string>none</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>keyEquivalent</key>
+	<string>~@r</string>
+	<key>name</key>
+	<string>Run Current Scenario</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>html</string>
+	<key>outputLocation</key>
+	<string>newWindow</string>
+	<key>scope</key>
+	<string>source.feature</string>
+	<key>uuid</key>
+	<string>ABA97FA3-EEE8-4A7A-96AC-B393B9AA586D</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>

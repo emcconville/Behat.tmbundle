@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env bash
+. "${TM_BUNDLE_SUPPORT}/etc/functions.sh"
+
+BEHAT_ARG="-dl"
+htmlHeader "${TM_BUNDLE_ITEM_NAME}"
+results="$(${TM_BEHAT} ${BEHAT_ARG})"
+echo "&lt;h1&gt;${TM_BUNDLE_ITEM_NAME}&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;&lt;xmp&gt;$results&lt;/xmp&gt;&lt;/code&gt;&lt;/pre&gt;"
+htmlFooter
+
+exit 0;
+</string>
+	<key>input</key>
+	<string>none</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>keyEquivalent</key>
+	<string>^h</string>
+	<key>name</key>
+	<string>Defined Language</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>html</string>
+	<key>outputLocation</key>
+	<string>newWindow</string>
+	<key>scope</key>
+	<string>source.feature</string>
+	<key>uuid</key>
+	<string>AC193CCB-8800-4E4F-A85C-65134BFA89EA</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>

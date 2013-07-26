@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>autoScrollOutput</key>
+	<true/>
+	<key>beforeRunningCommand</key>
+	<string>saveActiveFile</string>
+	<key>command</key>
+	<string>#!/usr/bin/env bash
+[[ -f "${TM_BUNDLE_SUPPORT}/etc/functions.sh" ]] &amp;&amp; . "${TM_BUNDLE_SUPPORT}/etc/functions.sh"
+
+BEHAT_ARG="-f html"
+${TM_BEHAT} ${BEHAT_ARG} "${TM_FILEPATH}" 
+exit 0;</string>
+	<key>input</key>
+	<string>none</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>keyEquivalent</key>
+	<string>@r</string>
+	<key>name</key>
+	<string>Run</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>html</string>
+	<key>outputLocation</key>
+	<string>newWindow</string>
+	<key>scope</key>
+	<string>source.feature</string>
+	<key>semanticClass</key>
+	<string>process.run.feature</string>
+	<key>uuid</key>
+	<string>D4F77CAA-2638-4232-95BD-15F42DF2A52F</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>

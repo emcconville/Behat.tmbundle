@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Folding</string>
+	<key>scope</key>
+	<string>source.feature</string>
+	<key>settings</key>
+	<dict>
+		<key>foldingIndentedBlockStart</key>
+		<string>^\s*((Feature|Scenario( Outline|s)?|Examples?|Background)\b\s*:\s*)(.*)$</string>
+	</dict>
+	<key>uuid</key>
+	<string>C3A6B752-6DDA-4E83-8F44-B9B9A0EB0E27</string>
+</dict>
+</plist>

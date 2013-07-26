@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>contactEmailRot13</key>
+	<string>rzppbaivyyr@rzppbaivyyr.pbz</string>
+	<key>contactName</key>
+	<string>Eric McConville</string>
+	<key>description</key>
+	<string>Basic language grammar &amp; execution environment for &lt;a href="http://behat.org/"&gt;Behat&lt;/a&gt;, a Behavior Driven Development framework for PHP.
+</string>
+	<key>name</key>
+	<string>Behat</string>
+	<key>source</key>
+	<dict>
+		<key>method</key>
+		<string>git</string>
+		<key>url</key>
+		<string>git://github.com/emcconville/Behat.tmbundle</string>
+	</dict>
+	<key>uuid</key>
+	<string>ED395A1A-D08C-4F6B-A0AB-F99FD964B14B</string>
+</dict>
+</plist>
