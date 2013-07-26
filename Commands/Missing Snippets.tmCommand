@@ -23,7 +23,7 @@ exit 0;
 	<key>keyEquivalent</key>
 	<string>^m</string>
 	<key>name</key>
-	<string>Missing snippets</string>
+	<string>Missing Snippets</string>
 	<key>outputCaret</key>
 	<string>afterOutput</string>
 	<key>outputFormat</key>
