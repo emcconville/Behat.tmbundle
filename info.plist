@@ -18,6 +18,27 @@
 		<key>url</key>
 		<string>git://github.com/emcconville/Behat.tmbundle</string>
 	</dict>
+  <key>mainMenu</key>
+  <dict>
+    <key>excludedItems</key>
+    <array>
+      <string>72988C76-0383-45D0-A617-8456ED06CB4B</string>
+      <string>51DF47C4-0BA1-4AEB-A609-ADFD9952B881</string>
+      <string>A735B88D-C8AE-4449-A0D5-D288B523F52D</string>
+      <string>E0F3D819-0ADD-4B85-84EB-16870ABB0608</string>
+    </array>
+    <key>items</key>
+    <array>
+      <string>D4F77CAA-2638-4232-95BD-15F42DF2A52F</string>
+      <string>ABA97FA3-EEE8-4A7A-96AC-B393B9AA586D</string>
+      <string>------------------------------------</string>
+      <string>AC193CCB-8800-4E4F-A85C-65134BFA89EA</string>
+      <string>61732630-C13B-488C-803A-A539C6152074</string>
+      <string>------------------------------------</string>
+      <string>3B61E8FC-688E-4609-B994-6AEC1FA47FAD</string>
+      <string>CEC6FDA7-5C1D-4DE1-A6EE-E6A60B3AF2A5</string>
+    </array>
+  </dict>
 	<key>uuid</key>
 	<string>ED395A1A-D08C-4F6B-A0AB-F99FD964B14B</string>
 </dict>
