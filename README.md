@@ -26,13 +26,13 @@ Simply clone repository into TextMate's bundle directory.
 
 ## Tab Completion
 
-"*Fe*" &#x21E5; => "**Feature:**"
+*Fe* &#x21E5; => **Feature:**
 
-"*Sc*" &#x21E5; => "**Scenario:**"
+*Sc* &#x21E5; => **Scenario:**
 
-"*Sc*" &#x21E5; &#x21E5; => "**Scenario Outline:**"
+*Sc* &#x21E5; &#x21E5; => **Scenario Outline:**
 
-"*Ex*" &#x21E5; => "**Examples:**"
+*Ex* &#x21E5; => **Examples:**
 
 
 ### Todo
