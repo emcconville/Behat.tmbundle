@@ -6,6 +6,8 @@
 	<array>
 		<string>feature</string>
 	</array>
+	<key>keyEquivalent</key>
+	<string>^~B</string>
 	<key>name</key>
 	<string>Behat Feature</string>
 	<key>patterns</key>
@@ -16,24 +18,28 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.type.feature</string>
+					<string>storage.type.class.feature</string>
 				</dict>
 				<key>4</key>
 				<dict>
 					<key>name</key>
-					<string>meta.function.name.feature</string>
+					<string>entity.name.function.feature</string>
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>^\s*((Feature|Scenario( Outline|s)?|Examples?|Background)\b\s*:\s*)(.*)$</string>
+			<string>^\s*((Feature|Scenario( Outline|s)?|Background)\b\s*:\s*)(.*)$</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>^\s*Examples?\s*:\s*$</string>
 			<key>name</key>
-			<string>entity.name.function.feature</string>
+			<string>storage.type.var.feature</string>
 		</dict>
 		<dict>
 			<key>match</key>
 			<string>@[^\s]+</string>
 			<key>name</key>
-			<string>entity.name.type.feature</string>
+			<string>markup.bold.feature</string>
 		</dict>
 		<dict>
 			<key>match</key>
