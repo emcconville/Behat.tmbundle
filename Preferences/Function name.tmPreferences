@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>name</key>
-	<string>Function name</string>
+	<string>Function Name</string>
 	<key>scope</key>
 	<string>entity.name.function.feature</string>
 	<key>settings</key>
