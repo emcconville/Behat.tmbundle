@@ -5,18 +5,75 @@
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
 	<key>command</key>
-	<string>#!/usr/bin/env bash
+	<string>#!/usr/bin/env php
+&lt;?php
 
-. "${TM_BUNDLE_SUPPORT}/etc/functions.sh"
+function stdout($_arg){ file_put_contents('php://stdout',$_arg); }
+function stderr($_arg){ file_put_contents('php://stderr',$_arg); }
 
-BEHAT_ARG="-f pretty --dry-run --no-snippets --no-time --no-ansi --no-paths"
+$dialg = $_ENV['DIALOG2'];
+$nib_path = $_ENV['TM_SUPPORT_PATH'].'/nibs';
 
-${TM_BEHAT} ${BEHAT_ARG} "${TM_FILEPATH}" | sed 'N;$!P;$!D;$d'
+$descriptorspec = array(
+	array('pipe','r'),
+	array('pipe','w'),
+	array('pipe','a')
+);
+$process = proc_open("$dialog -e",$descriptorspec,$pipes,NULL,NULL);
+fwrite($pipes[0],'{informativeText="test1";messageTitle="Hello";alertStyle="critical";}');
+do {
+	$status = proc_get_status($process);
+	sleep(1);
+} while($status['running']);
 
-exit 0;
-</string>
+proc_close($process);
+exit(0);
+@include($_ENV['TM_PROJECT_DIRECTORY'].'/vendor/autoload.php');
+if(!class_exists('Behat\Gherkin\Gherkin',true)):
+	stderr("Unable to load Behat Gherkin library.");
+	exit(206);
+endif;
+
+use Behat\Gherkin\Gherkin,
+    Behat\Gherkin\Exception\ParserException,
+    Behat\Gherkin\Keywords\ArrayKeywords,
+    Behat\Gherkin\Dumper\GherkinDumper,
+    Behat\Gherkin\Lexer,
+    Behat\Gherkin\Parser;
+
+$keywords = new ArrayKeywords(array(
+        'en' =&gt; array(
+            'feature' =&gt; 'Feature|Business Need|Ability',
+            'background' =&gt; 'Background',
+            'scenario' =&gt; 'Scenario',
+            'scenario_outline' =&gt; 'Scenario Outline|Scenario Template',
+            'examples' =&gt; 'Examples|Scenarios',
+            'given' =&gt; 'Given',
+            'when' =&gt; 'When',
+            'then' =&gt; 'Then',
+            'and' =&gt; 'And',
+            'but' =&gt; 'But'
+        )
+    )
+);
+$keywords-&gt;setLanguage('en');
+$lexer = new Lexer($keywords);
+$parser = new Parser($lexer);
+$dumper = new GherkinDumper($keywords);
+$source = file_get_contents('php://stdin');
+
+try {
+	$feature = $parser-&gt;parse($source);
+} catch (ParserException $exception) {
+	stderr( $exception-&gt;getMessage() );
+	stdout( $source );
+	exit(1);
+}
+
+stdout( $dumper-&gt;dumpFeature( $feature ) );
+exit(0);</string>
 	<key>input</key>
-	<string>none</string>
+	<string>document</string>
 	<key>inputFormat</key>
 	<string>text</string>
 	<key>keyEquivalent</key>
