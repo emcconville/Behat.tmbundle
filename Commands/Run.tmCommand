@@ -21,6 +21,8 @@ exit 0;</string>
 	<string>@r</string>
 	<key>name</key>
 	<string>Run</string>
+	<key>output</key>
+	<string>showAsHTML</string>
 	<key>outputCaret</key>
 	<string>afterOutput</string>
 	<key>outputFormat</key>
