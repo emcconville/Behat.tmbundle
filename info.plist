@@ -9,8 +9,50 @@
 	<key>description</key>
 	<string>Basic language grammar &amp; execution environment for &lt;a href="http://behat.org/"&gt;Behat&lt;/a&gt;, a Behavior Driven Development framework for PHP.
 </string>
+	<key>mainMenu</key>
+	<dict>
+		<key>excludedItems</key>
+		<array>
+			<string>72988C76-0383-45D0-A617-8456ED06CB4B</string>
+			<string>51DF47C4-0BA1-4AEB-A609-ADFD9952B881</string>
+			<string>A735B88D-C8AE-4449-A0D5-D288B523F52D</string>
+			<string>E0F3D819-0ADD-4B85-84EB-16870ABB0608</string>
+		</array>
+		<key>items</key>
+		<array>
+			<string>D4F77CAA-2638-4232-95BD-15F42DF2A52F</string>
+			<string>ABA97FA3-EEE8-4A7A-96AC-B393B9AA586D</string>
+			<string>------------------------------------</string>
+			<string>AC193CCB-8800-4E4F-A85C-65134BFA89EA</string>
+			<string>61732630-C13B-488C-803A-A539C6152074</string>
+			<string>------------------------------------</string>
+			<string>3B61E8FC-688E-4609-B994-6AEC1FA47FAD</string>
+			<string>CEC6FDA7-5C1D-4DE1-A6EE-E6A60B3AF2A5</string>
+		</array>
+	</dict>
 	<key>name</key>
 	<string>Behat</string>
+	<key>ordering</key>
+	<array>
+		<string>7F9612EE-6D7A-4A6F-BDE8-A62060D8D26C</string>
+		<string>AC193CCB-8800-4E4F-A85C-65134BFA89EA</string>
+		<string>72988C76-0383-45D0-A617-8456ED06CB4B</string>
+		<string>51DF47C4-0BA1-4AEB-A609-ADFD9952B881</string>
+		<string>C3A6B752-6DDA-4E83-8F44-B9B9A0EB0E27</string>
+		<string>AEED56FF-6DA5-49C9-BCD9-CE8D310DF482</string>
+		<string>D7139783-034B-4271-877C-A6307649FCE2</string>
+		<string>61732630-C13B-488C-803A-A539C6152074</string>
+		<string>D4F77CAA-2638-4232-95BD-15F42DF2A52F</string>
+		<string>ABA97FA3-EEE8-4A7A-96AC-B393B9AA586D</string>
+		<string>70BF49D9-AE98-4FFE-8940-E9435F4A68F9</string>
+		<string>E0F3D819-0ADD-4B85-84EB-16870ABB0608</string>
+		<string>A735B88D-C8AE-4449-A0D5-D288B523F52D</string>
+		<string>93388C2A-6A38-40C1-BB12-320F16CACAA6</string>
+		<string>99575ADE-0855-4F6B-AA0B-D855AA420D76</string>
+		<string>1B1AEDC7-7044-4919-AF89-0C46B5F1319B</string>
+		<string>CEC6FDA7-5C1D-4DE1-A6EE-E6A60B3AF2A5</string>
+		<string>3B61E8FC-688E-4609-B994-6AEC1FA47FAD</string>
+	</array>
 	<key>source</key>
 	<dict>
 		<key>method</key>
@@ -18,27 +60,6 @@
 		<key>url</key>
 		<string>git://github.com/emcconville/Behat.tmbundle</string>
 	</dict>
-  <key>mainMenu</key>
-  <dict>
-    <key>excludedItems</key>
-    <array>
-      <string>72988C76-0383-45D0-A617-8456ED06CB4B</string>
-      <string>51DF47C4-0BA1-4AEB-A609-ADFD9952B881</string>
-      <string>A735B88D-C8AE-4449-A0D5-D288B523F52D</string>
-      <string>E0F3D819-0ADD-4B85-84EB-16870ABB0608</string>
-    </array>
-    <key>items</key>
-    <array>
-      <string>D4F77CAA-2638-4232-95BD-15F42DF2A52F</string>
-      <string>ABA97FA3-EEE8-4A7A-96AC-B393B9AA586D</string>
-      <string>------------------------------------</string>
-      <string>AC193CCB-8800-4E4F-A85C-65134BFA89EA</string>
-      <string>61732630-C13B-488C-803A-A539C6152074</string>
-      <string>------------------------------------</string>
-      <string>3B61E8FC-688E-4609-B994-6AEC1FA47FAD</string>
-      <string>CEC6FDA7-5C1D-4DE1-A6EE-E6A60B3AF2A5</string>
-    </array>
-  </dict>
 	<key>uuid</key>
 	<string>ED395A1A-D08C-4F6B-A0AB-F99FD964B14B</string>
 </dict>

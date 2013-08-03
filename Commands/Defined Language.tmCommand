@@ -24,6 +24,8 @@ exit 0;
 	<string>^h</string>
 	<key>name</key>
 	<string>Defined Language</string>
+	<key>output</key>
+	<string>showAsHTML</string>
 	<key>outputCaret</key>
 	<string>afterOutput</string>
 	<key>outputFormat</key>

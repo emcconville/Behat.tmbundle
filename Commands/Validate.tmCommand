@@ -38,6 +38,8 @@ exit 0</string>
 	<string>^V</string>
 	<key>name</key>
 	<string>Validate</string>
+	<key>output</key>
+	<string>showAsTooltip</string>
 	<key>outputCaret</key>
 	<string>afterOutput</string>
 	<key>outputFormat</key>
