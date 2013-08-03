@@ -7,7 +7,7 @@
 	<key>command</key>
 	<string>#!/usr/bin/env bash
 
-. "${TM_BUNDLE_SUPPORT}/etc/functions.sh"
+[[ -f "${TM_BUNDLE_SUPPORT}/etc/functions.sh" ]] &amp;&amp; . "${TM_BUNDLE_SUPPORT}/etc/functions.sh"
 
 if test -n "${TM_LINE_NUMBER}"
 then

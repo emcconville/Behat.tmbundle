@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>beforeRunningCommand</key>
-	<string>nop</string>
+	<string>saveActiveFile</string>
 	<key>command</key>
 	<string>#!/usr/bin/env bash
 
-. "${TM_BUNDLE_SUPPORT}/etc/functions.sh"
+[[ -f "${TM_BUNDLE_SUPPORT}/etc/functions.sh" ]] &amp;&amp; . "${TM_BUNDLE_SUPPORT}/etc/functions.sh"
 
 BEHAT_ARG="-f pretty --dry-run --no-snippets --no-time --no-ansi --no-paths"
 

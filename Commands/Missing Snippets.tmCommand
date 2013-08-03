@@ -6,7 +6,7 @@
 	<string>saveActiveFile</string>
 	<key>command</key>
 	<string>#!/usr/bin/env bash
-. "${TM_BUNDLE_SUPPORT}/etc/functions.sh"
+[[ -f "${TM_BUNDLE_SUPPORT}/etc/functions.sh" ]] &amp;&amp; . "${TM_BUNDLE_SUPPORT}/etc/functions.sh"
 
 BEHAT_ARG="-f snippets --dry-run"
 htmlHeader "${TM_BUNDLE_ITEM_NAME}"
