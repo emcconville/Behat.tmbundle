@@ -5,32 +5,15 @@
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
 	<key>command</key>
-	<string>#!/usr/bin/env php
+	<string>#!/usr/bin/env php -n
 &lt;?php
+require_once $_ENV['TM_BUNDLE_SUPPORT'].'/includes/ui.php';
 
-function stdout($_arg){ file_put_contents('php://stdout',$_arg); }
-function stderr($_arg){ file_put_contents('php://stderr',$_arg); }
+$source = file_get_contents('php://stdin');
 
-$dialg = $_ENV['DIALOG2'];
-$nib_path = $_ENV['TM_SUPPORT_PATH'].'/nibs';
-
-$descriptorspec = array(
-	array('pipe','r'),
-	array('pipe','w'),
-	array('pipe','a')
-);
-$process = proc_open("$dialog -e",$descriptorspec,$pipes,NULL,NULL);
-fwrite($pipes[0],'{informativeText="test1";messageTitle="Hello";alertStyle="critical";}');
-do {
-	$status = proc_get_status($process);
-	sleep(1);
-} while($status['running']);
-
-proc_close($process);
-exit(0);
 @include($_ENV['TM_PROJECT_DIRECTORY'].'/vendor/autoload.php');
 if(!class_exists('Behat\Gherkin\Gherkin',true)):
-	stderr("Unable to load Behat Gherkin library.");
+	UI::alert(UI::ALERT_CRITICAL,"Behat Missing","Unable to load Behat Gherkin library.");
 	exit(206);
 endif;
 
@@ -60,18 +43,17 @@ $keywords-&gt;setLanguage('en');
 $lexer = new Lexer($keywords);
 $parser = new Parser($lexer);
 $dumper = new GherkinDumper($keywords);
-$source = file_get_contents('php://stdin');
 
 try {
 	$feature = $parser-&gt;parse($source);
 } catch (ParserException $exception) {
-	stderr( $exception-&gt;getMessage() );
-	stdout( $source );
-	exit(1);
+  UI::alert(UI::ALERT_CRITICAL,"Parser Exception",$exception-&gt;getMessage());
+	exit(206);
 }
 
-stdout( $dumper-&gt;dumpFeature( $feature ) );
-exit(0);</string>
+file_put_contents('php://stdout', $dumper-&gt;dumpFeature( $feature ) );
+exit(0);
+?&gt;</string>
 	<key>input</key>
 	<string>document</string>
 	<key>inputFormat</key>
@@ -80,8 +62,6 @@ exit(0);</string>
 	<string>^H</string>
 	<key>name</key>
 	<string>Tidy</string>
-	<key>output</key>
-	<string>replaceDocument</string>
 	<key>outputCaret</key>
 	<string>heuristic</string>
 	<key>outputFormat</key>

@@ -3,43 +3,64 @@
 <plist version="1.0">
 <dict>
 	<key>beforeRunningCommand</key>
-	<string>saveActiveFile</string>
+	<string>nop</string>
 	<key>command</key>
-	<string>#!/usr/bin/env bash
-. "${TM_BUNDLE_SUPPORT}/etc/functions.sh"
+	<string>#!/usr/bin/env php -n
+&lt;?php
+require_once $_ENV['TM_BUNDLE_SUPPORT'].'/includes/ui.php';
 
-BEHAT_ARG="--no-ansi --dry-run --strict"
+$source = file_get_contents('php://stdin');
 
-# @todo @hack
-# Behat will only end on none `0' if strict is flag is
-# present, and the feature was skipped (ie dry-run).
+@include($_ENV['TM_PROJECT_DIRECTORY'].'/vendor/autoload.php');
+if(!class_exists('Behat\Gherkin\Gherkin',true)):
+	UI::alert(UI::ALERT_CRITICAL,"Behat Missing","Unable to load Behat Gherkin library.");
+	exit(206);
+endif;
 
-output="$(${TM_BEHAT} ${BEHAT_ARG} "${TM_FILEPATH}" 2&gt;&amp;1)"
+use Behat\Gherkin\Gherkin,
+    Behat\Gherkin\Exception\ParserException,
+    Behat\Gherkin\Keywords\ArrayKeywords,
+    Behat\Gherkin\Lexer,
+    Behat\Gherkin\Parser;
 
-if [ $? -eq 0 ]
-then
-  echo "Error"
-  while read -r line; do
-    if [[ -z $line ]]; then 
-      continue
-    fi
-    echo $line
-  done &lt;&lt;&lt;  "$output" | sed '$d' 
-else
-  echo "Ok"
-fi
+$keywords = new ArrayKeywords(array(
+        'en' =&gt; array(
+            'feature' =&gt; 'Feature|Business Need|Ability',
+            'background' =&gt; 'Background',
+            'scenario' =&gt; 'Scenario',
+            'scenario_outline' =&gt; 'Scenario Outline|Scenario Template',
+            'examples' =&gt; 'Examples|Scenarios',
+            'given' =&gt; 'Given',
+            'when' =&gt; 'When',
+            'then' =&gt; 'Then',
+            'and' =&gt; 'And',
+            'but' =&gt; 'But'
+        )
+    )
+);
+$keywords-&gt;setLanguage('en');
+$lexer = new Lexer($keywords);
+$parser = new Parser($lexer);
 
-exit 0</string>
+try {
+	$feature = $parser-&gt;parse($source);
+} catch (ParserException $exception) {
+  UI::alert(UI::ALERT_CRITICAL,"Parser Exception",$exception-&gt;getMessage());
+	exit(206);
+}
+
+file_put_contents('php://stdout', 'Ok' );
+exit(0);
+?&gt;
+</string>
 	<key>input</key>
-	<string>none</string>
+	<string>document</string>
 	<key>inputFormat</key>
 	<string>text</string>
 	<key>keyEquivalent</key>
 	<string>^V</string>
 	<key>name</key>
 	<string>Validate</string>
-	<key>output</key>
-	<string>showAsTooltip</string>
 	<key>outputCaret</key>
 	<string>afterOutput</string>
 	<key>outputFormat</key>
