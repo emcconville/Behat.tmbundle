@@ -62,6 +62,8 @@ exit(0);
 	<string>^H</string>
 	<key>name</key>
 	<string>Tidy</string>
+	<key>output</key>
+	<string>replaceDocument</string>
 	<key>outputCaret</key>
 	<string>heuristic</string>
 	<key>outputFormat</key>
