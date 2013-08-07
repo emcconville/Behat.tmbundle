@@ -9,6 +9,8 @@
 &lt;?php
 require_once $_ENV['TM_BUNDLE_SUPPORT'].'/includes/ui.php';
 
+use TextMate\UI;
+
 $source = file_get_contents('php://stdin');
 
 @include($_ENV['TM_PROJECT_DIRECTORY'].'/vendor/autoload.php');
@@ -61,8 +63,6 @@ exit(0);
 	<string>^V</string>
 	<key>name</key>
 	<string>Validate</string>
-	<key>output</key>
-	<string>showAsTooltip</string>
 	<key>outputCaret</key>
 	<string>afterOutput</string>
 	<key>outputFormat</key>
