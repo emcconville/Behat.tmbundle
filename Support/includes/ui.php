@@ -82,5 +82,20 @@ namespace TextMate {
       );
       $ui->dialog();
     }
+    static public function menu($options=array())
+    {
+	    if(empty($options)) return NULL;
+	    $items=array();
+	    foreach($options as $path => $title)
+	        $items[] = empty($title) ? '{separator=1;}':sprintf('{title="%s";path="%s";}',Data::escape($title),Data::escape($path)); 
+	    $ui = new UI();
+	    $ui->flags = ' -u ';
+	    $ui->data  = sprintf('{menuItems=(%s);}',implode(',',$items));
+	    $ui->dialog();
+	    $plist = @simplexml_load_string($ui->stdout);
+	    // Get the first "<string>" node following any "<key>path</key>" element.
+	    $selected = @$plist->xpath('//*[contains(text(),\'path\')]/following-sibling::string[1]');
+	    return empty($selected) ? NULL : (string)$selected[0];
+    }
   }
 }
