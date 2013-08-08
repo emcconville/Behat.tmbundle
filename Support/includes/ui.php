@@ -88,7 +88,7 @@ namespace TextMate {
 	    $items=array();
 	    foreach($options as $path => $title)
 	        $items[] = empty($title) ? '{separator=1;}':sprintf('{title="%s";path="%s";}',Data::escape($title),Data::escape($path)); 
-	    $ui = new UI();
+	    $ui = new self();
 	    $ui->flags = ' -u ';
 	    $ui->data  = sprintf('{menuItems=(%s);}',implode(',',$items));
 	    $ui->dialog();
@@ -96,6 +96,34 @@ namespace TextMate {
 	    // Get the first "<string>" node following any "<key>path</key>" element.
 	    $selected = @$plist->xpath('//*[contains(text(),\'path\')]/following-sibling::string[1]');
 	    return empty($selected) ? NULL : (string)$selected[0];
+    }
+    static public function complete($choices=array(),$options=array(),$callback=NULL)
+    {
+        $ui = new self();
+        $ui->flags = ' popup --returnChoice ';
+        if(isset($options['initial_filter']))
+            $ui->flags .= sprintf(' --alreadyTyped "%s"',Data::escape($options['initial_filter']));
+        if(isset($options['static_prefix']))
+            $ui->flags .= sprintf(' --staticPrefix "%s"',Data::escape($options['static_prefix']));
+        if(isset($options['extra_chars']))
+            $ui->flags .= sprintf(' --additionalWordCharacters "%s"',Data::escape($options['extra_chars']));
+        if(isset($options['case_insensitive']))
+            $ui->flags .= ' --caseInsensitive ';
+        $suggestions = array();
+        foreach($choices as $choice)
+        {
+            $data = new Data();
+            if(is_array($choice))
+                foreach($choice as $k => $v)
+                    $data->__set($k,$v);
+            else
+                $data->display = (string)$choice;
+            $suggestions[] = $data;
+        }
+        $ui->data = sprintf('{suggestions=(%s);}',implode(',',$suggestions));
+        $ui->dialog();
+        //var_dump($ui->stdout);
+        //if(is_callable($callback))
     }
   }
 }
