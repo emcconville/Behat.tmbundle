@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Completion: Storage Structure</string>
+	<key>scope</key>
+	<string>source.feature</string>
+	<key>settings</key>
+	<dict>
+		<key>completions</key>
+		<array>
+			<string>Ability</string>
+			<string>Background</string>
+			<string>Business Need</string>
+			<string>Examples</string>
+			<string>Feature</string>
+			<string>Scenario</string>
+			<string>Scenarios</string>
+			<string>Scenario Outline</string>
+			<string>Scenario Template</string>
+		</array>
+	</dict>
+	<key>uuid</key>
+	<string>19B9E0F7-5678-4A23-8A9C-7593754DE839</string>
+</dict>
+</plist>
