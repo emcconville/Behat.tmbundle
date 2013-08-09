@@ -101,7 +101,7 @@ namespace TextMate {
     {
         $ui = new self();
         $ui->flags = ' popup --returnChoice ';
-        if(isset($options['initial_filter']))
+        if(isset($options['initial_filter']) && !empty($options['initial_filter']))
             $ui->flags .= sprintf(' --alreadyTyped "%s"',Data::escape($options['initial_filter']));
         if(isset($options['static_prefix']))
             $ui->flags .= sprintf(' --staticPrefix "%s"',Data::escape($options['static_prefix']));
@@ -122,8 +122,15 @@ namespace TextMate {
         }
         $ui->data = sprintf('{suggestions=(%s);}',implode(',',$suggestions));
         $ui->dialog();
-        //var_dump($ui->stdout);
-        //if(is_callable($callback))
+        preg_match('/display\s=\s"(?P<display>[^"]*)"/',$ui->stdout,$match);
+        unset($ui);
+        if(isset($match['display']))
+        {
+            $ui = new self();
+            $ui->flag = sprintf(' x-insert --snippet "%s"',Data::escape($match['display']));
+            $ui->dialog();
+            unset($ui);
+        }
     }
   }
 }
