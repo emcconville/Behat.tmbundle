@@ -27,7 +27,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>^\s*((Feature|Scenario( Outline| Template)?|Background|Ability|Business Need)\b\s*:\s*)(.*)$</string>
+			<string>^\s*((Feature|Scenario\s?(Outline|Template)?|Background|Ability|Business Need)\b\s*:\s*)(.*)$</string>
 		</dict>
 		<dict>
 			<key>match</key>
