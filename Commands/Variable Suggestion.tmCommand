@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env php -n
+&lt;?php
+$options = array('case_insensitive'=&gt;true);
+// Only suggest example variables if given '&lt;&gt;' token
+if(strpos($_ENV['TM_CURRENT_WORD'],'&lt;&gt;') === FALSE)
+{
+  if(preg_match('!^[A-Za-z][A-Za-z0-9]*$!',$_ENV['TM_CURRENT_WORD']))
+  {
+    $options['initial_filter'] = $_ENV['TM_CURRENT_WORD'];
+  }
+  else
+  {
+    // It's not a word, not variable storage
+    exit(0);
+  }
+}
+
+require_once $_ENV['TM_BUNDLE_SUPPORT'].'/includes/ui.php';
+
+$stdin = @fopen('php://stdin','r');
+$lineno=0;
+$vars = array();
+
+// Iterate through document to grab vars in scope
+while($line = fgets($stdin))
+{
+  // Skip all lines before our current line number
+  if(++$lineno &lt; $_ENV['TM_LINE_NUMBER']) continue;
+  if(preg_match_all('/\|?(?P&lt;vars&gt;[^\|]+)\|/',$line,$match))
+  {
+    foreach($match['vars'] as $var)
+    {
+      // @todo. If current word is provided, strip out known variables that do
+      // not start with given word
+      $var = trim($var);
+      if (!empty($var))
+        $vars[] = $var;
+    }
+    break;
+  }
+  // Kill loop if we reach another test
+  if(preg_match('/^\s*(Scenario|Feature|Ability|Business)/',$line)) break;
+}
+@fclose($stdin);
+
+use TextMate\UI;
+if(!empty($vars))
+  UI::complete($vars,$options);
+exit(0);</string>
+	<key>input</key>
+	<string>document</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>keyEquivalent</key>
+	<string>~</string>
+	<key>name</key>
+	<string>Variable Suggestion</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>discard</string>
+	<key>scope</key>
+	<string>source.feature</string>
+	<key>uuid</key>
+	<string>B4986534-3767-4284-899C-AAF5E16D85C7</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>
