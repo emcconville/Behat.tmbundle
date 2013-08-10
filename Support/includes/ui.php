@@ -82,6 +82,11 @@ namespace TextMate {
       );
       $ui->dialog();
     }
+    /**
+     * Display list of choices
+     * @param array $options
+     * @return string - Key of selected option. NULL on error, or user cancel
+     */
     static public function menu($options=array())
     {
 	    if(empty($options)) return NULL;
@@ -97,6 +102,12 @@ namespace TextMate {
 	    $selected = @$plist->xpath('//*[contains(text(),\'path\')]/following-sibling::string[1]');
 	    return empty($selected) ? NULL : (string)$selected[0];
     }
+    /**
+     * Simple return choice popup.
+     * @param $choices array
+     * @param $options array
+     * @param $callback method
+     */
     static public function complete($choices=array(),$options=array(),$callback=NULL)
     {
         $ui = new self();
