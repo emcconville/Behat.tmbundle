@@ -5,55 +5,23 @@
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
 	<key>command</key>
-	<string>#!/usr/bin/env php -n
-&lt;?php
-$options = array('case_insensitive'=&gt;true);
-// Only suggest example variables if given '&lt;&gt;' token
-if(strpos($_ENV['TM_CURRENT_WORD'],'&lt;&gt;') === FALSE)
-{
-  if(preg_match('!^[A-Za-z][A-Za-z0-9]*$!',$_ENV['TM_CURRENT_WORD']))
-  {
-    $options['initial_filter'] = $_ENV['TM_CURRENT_WORD'];
+	<string>#!/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby -wKU
+require ENV['TM_SUPPORT_PATH'] + '/lib/ui'
+
+choices = Array.new()
+ARGF.each_with_index do |line,index|
+  next if index &lt; ENV['TM_LINE_NUMBER'].to_i
+  break line if /^\s*(Scenario|Feature|Ability|Business)/ =~ line
+  line.scan( /\|?(.*?)\|/ ){|match| 
+    tmp = match[0].strip
+    choices &lt;&lt; tmp unless tmp.empty? 
   }
-  else
-  {
-    // It's not a word, not variable storage
-    exit(0);
-  }
-}
+  break unless choices.empty?
+end
 
-require_once $_ENV['TM_BUNDLE_SUPPORT'].'/includes/ui.php';
-
-$stdin = @fopen('php://stdin','r');
-$lineno=0;
-$vars = array();
-
-// Iterate through document to grab vars in scope
-while($line = fgets($stdin))
-{
-  // Skip all lines before our current line number
-  if(++$lineno &lt; $_ENV['TM_LINE_NUMBER']) continue;
-  if(preg_match_all('/\|?(?P&lt;vars&gt;[^\|]+)\|/',$line,$match))
-  {
-    foreach($match['vars'] as $var)
-    {
-      // @todo. If current word is provided, strip out known variables that do
-      // not start with given word
-      $var = trim($var);
-      if (!empty($var))
-        $vars[] = $var;
-    }
-    break;
-  }
-  // Kill loop if we reach another test
-  if(preg_match('/^\s*(Scenario|Feature|Ability|Business)/',$line)) break;
-}
-@fclose($stdin);
-
-use TextMate\UI;
-if(!empty($vars))
-  UI::complete($vars,$options);
-exit(0);</string>
+filter = ENV['TM_CURRENT_WORD'].index('&lt;').nil? ? ENV['TM_CURRENT_WORD'] : ""
+TextMate::UI.complete(choices, :initial_filter =&gt; filter, :extra_chars =&gt; '_')  unless choices.empty?
+</string>
 	<key>input</key>
 	<string>document</string>
 	<key>inputFormat</key>
