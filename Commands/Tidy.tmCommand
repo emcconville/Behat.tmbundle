@@ -3,28 +3,67 @@
 <plist version="1.0">
 <dict>
 	<key>beforeRunningCommand</key>
-	<string>saveActiveFile</string>
+	<string>nop</string>
 	<key>command</key>
-	<string>#!/usr/bin/env bash
+	<string>#!/usr/bin/env php -n
+&lt;?php
+require_once $_ENV['TM_BUNDLE_SUPPORT'].'/includes/ui.php';
 
-[[ -f "${TM_BUNDLE_SUPPORT}/etc/functions.sh" ]] &amp;&amp; . "${TM_BUNDLE_SUPPORT}/etc/functions.sh"
+use TextMate\UI;
 
-BEHAT_ARG="-f pretty --dry-run --no-snippets --no-time --no-ansi --no-paths"
+$source = file_get_contents('php://stdin');
 
-${TM_BEHAT} ${BEHAT_ARG} "${TM_FILEPATH}" | sed 'N;$!P;$!D;$d'
+@include($_ENV['TM_PROJECT_DIRECTORY'].'/vendor/autoload.php');
+if(!class_exists('Behat\Gherkin\Gherkin',true)):
+	UI::alert(UI::ALERT_CRITICAL,"Behat Missing","Unable to load Behat Gherkin library.");
+	exit(206);
+endif;
 
-exit 0;
-</string>
+use Behat\Gherkin\Gherkin,
+    Behat\Gherkin\Exception\ParserException,
+    Behat\Gherkin\Keywords\ArrayKeywords,
+    Behat\Gherkin\Dumper\GherkinDumper,
+    Behat\Gherkin\Lexer,
+    Behat\Gherkin\Parser;
+
+$keywords = new ArrayKeywords(array(
+        'en' =&gt; array(
+            'feature' =&gt; 'Feature|Business Need|Ability',
+            'background' =&gt; 'Background',
+            'scenario' =&gt; 'Scenario',
+            'scenario_outline' =&gt; 'Scenario Outline|Scenario Template',
+            'examples' =&gt; 'Examples|Scenarios',
+            'given' =&gt; 'Given',
+            'when' =&gt; 'When',
+            'then' =&gt; 'Then',
+            'and' =&gt; 'And',
+            'but' =&gt; 'But'
+        )
+    )
+);
+$keywords-&gt;setLanguage('en');
+$lexer = new Lexer($keywords);
+$parser = new Parser($lexer);
+$dumper = new GherkinDumper($keywords);
+
+try {
+	$feature = $parser-&gt;parse($source);
+} catch (ParserException $exception) {
+  UI::alert(UI::ALERT_CRITICAL,"Parser Exception",$exception-&gt;getMessage());
+	exit(206);
+}
+
+file_put_contents('php://stdout', $dumper-&gt;dumpFeature( $feature ) );
+exit(0);
+?&gt;</string>
 	<key>input</key>
-	<string>none</string>
+	<string>document</string>
 	<key>inputFormat</key>
 	<string>text</string>
 	<key>keyEquivalent</key>
 	<string>^H</string>
 	<key>name</key>
 	<string>Tidy</string>
-	<key>output</key>
-	<string>replaceDocument</string>
 	<key>outputCaret</key>
 	<string>heuristic</string>
 	<key>outputFormat</key>

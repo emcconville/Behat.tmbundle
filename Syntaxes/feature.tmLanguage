@@ -27,11 +27,11 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>^\s*((Feature|Scenario( Outline|s)?|Background)\b\s*:\s*)(.*)$</string>
+			<string>^\s*((Feature|Scenario\s?(Outline|Template)?|Background|Ability|Business Need)\b\s*:\s*)(.*)$</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>^\s*Examples?\s*:\s*$</string>
+			<string>^\s*(Example|Scenario)s?\s*:\s*$</string>
 			<key>name</key>
 			<string>storage.type.var.feature</string>
 		</dict>

@@ -37,6 +37,7 @@ Simply clone repository into TextMate's bundle directory.
 
 &#8963;&#8679;H &mdash; Reformat & clean ("tidy") current document format
 
+&#8997;&#9099; &mdash; Suggested variables defined under "Example:" section
 
 ## Tab Completion
 
@@ -51,6 +52,7 @@ Simply clone repository into TextMate's bundle directory.
 
 ### Todo
 
+ - TextMate friendly documentation
  - Rewrite all commands in native PHP
  - Basic composer.phar install command
  - Support for running tagged featured
@@ -58,7 +60,15 @@ Simply clone repository into TextMate's bundle directory.
 
 ### History
 
+ - 1.0 August 2013
+  - [Cucumber language][cl] syntax
+  - Run single feature, or scenario
+  - Tab & Escape Completion
+  - Variable suggestion
+  - Validated & Tidy commands (available only in [composer.phar][composer] install)
+
 
  [cl]: http://en.wikipedia.org/wiki/Cucumber_(software) "Cucumber (software)"
  [tm]: https://github.com/textmate/textmate "Text Mate"
- [dl]: https://github.com/emcconville/Behat.tmbundle/releases/download/v1.0-rc/Behat.tmbundle.tar.gz "Download"
+ [dl]: https://github.com/emcconville/Behat.tmbundle/releases/download/v1.0/Behat.tmbundle.tar.gz "Download"
+ [composer]: http://getcomposer.org/
